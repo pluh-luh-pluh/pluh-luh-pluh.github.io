@@ -29,9 +29,18 @@
     }
 
     @keyframes glow {
-      0% { background-position: 0% center; text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
-      50% { background-position: 100% center; text-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff; }
-      100% { background-position: 0% center; text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
+      0% {
+        background-position: 0% center;
+        text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ff00ff;
+      }
+      50% {
+        background-position: 100% center;
+        text-shadow: 0 0 40px #00ffff, 0 0 80px #ff00ff, 0 0 100px #00ffff;
+      }
+      100% {
+        background-position: 0% center;
+        text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ff00ff;
+      }
     }
 
     p {
@@ -40,25 +49,28 @@
     }
 
     .add-bot-button {
-      padding: 12px 24px;
-      font-size: 1rem;
+      padding: 14px 30px;
+      font-size: 1.1rem;
       border: none;
       border-radius: 25px;
       background-color: white;
       color: black;
       cursor: pointer;
       text-decoration: none;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s ease;
     }
 
     .add-bot-button:hover {
       background-color: #ccc;
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body>
   <h1>pluh</h1>
   <p>a great bot which is a joke</p>
-  <a href="https://discord.com/oauth2/authorize?client_id=1394757710909538426&permissions=3072&integration_type=0&scope=bot" class="add-bot-button">Add Bot</a>
+  <a href="https://discord.com/oauth2/authorize?client_id=1394757710909538426&permissions=3072&integration_type=0&scope=bot" class="add-bot-button">
+    Add Bot
+  </a>
 </body>
 </html>
