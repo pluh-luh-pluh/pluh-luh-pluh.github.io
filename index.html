@@ -107,7 +107,6 @@
       }
     }
 
-    /* Randomize particle positions and delays */
     .particles span:nth-child(odd) {
       animation-delay: 2s;
       background: #ff00ff;
@@ -116,6 +115,18 @@
     .particles span:nth-child(even) {
       animation-delay: 5s;
       background: #00ffff;
+    }
+
+    /* Bottom-left ChatGPT Credit */
+    .chatgpt-credit {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      font-size: 0.9rem;
+      color: #888;
+      opacity: 0.5;
+      font-style: italic;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -169,5 +180,7 @@
   <a href="https://discord.com/oauth2/authorize?client_id=1394757710909538426&permissions=3072&integration_type=0&scope=bot" class="add-bot-button">
     Add to your Discord Server
   </a>
+
+  <div class="chatgpt-credit">Coded with ChatGPT</div>
 </body>
 </html>
