@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Pluh Discord Bot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     * {
       margin: 0;
@@ -22,6 +22,7 @@
       flex-direction: column;
       text-align: center;
       overflow: hidden;
+      perspective: 600px; /* needed for 3D scale */
     }
 
     h1 {
@@ -32,14 +33,49 @@
       -webkit-text-fill-color: transparent;
       animation: gradientGlow 6s ease infinite;
       text-shadow: 0 0 20px rgba(255, 0, 255, 0.6),
-                   0 0 40px rgba(0, 255, 255, 0.5);
+        0 0 40px rgba(0, 255, 255, 0.5);
       cursor: pointer;
+      transition: transform 0.3s ease;
+      transform-style: preserve-3d;
+      user-select: none; /* disable text selection */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
 
     @keyframes gradientGlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes bounce-towards {
+      0% {
+        transform: scale3d(1, 1, 1);
+      }
+      40% {
+        /* stretch horizontally a bit more and scale up on z */
+        transform: scale3d(1.4, 1.15, 1.7);
+      }
+      60% {
+        transform: scale3d(0.95, 0.95, 0.9);
+      }
+      80% {
+        transform: scale3d(1.05, 1.05, 1.1);
+      }
+      100% {
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+    .bounce {
+      animation: bounce-towards 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
     }
 
     p {
@@ -127,21 +163,33 @@
 </head>
 <body>
   <div class="particles">
-    <!-- Optional: add your particle span elements here -->
+    <!-- Optional particles can be added here -->
   </div>
 
   <h1 id="pluh-text">pluh</h1>
   <p>want a useless bot? add me to your server</p>
-  <a href="https://discord.com/oauth2/authorize?client_id=1394757710909538426&permissions=3072&integration_type=0&scope=bot" class="add-bot-button">
+  <a
+    href="https://discord.com/oauth2/authorize?client_id=1394757710909538426&permissions=3072&integration_type=0&scope=bot"
+    class="add-bot-button"
+  >
     Add to your Discord Server
   </a>
 
   <div class="chatgpt-credit">Website coded with ChatGPT</div>
 
   <script>
-    const pluhSound = new Audio("https://www.myinstants.com/media/sounds/pluh.mp3");
-    document.getElementById("pluh-text").addEventListener("click", () => {
+    const pluhText = document.getElementById("pluh-text");
+    const pluhSound = new Audio(
+      "https://www.myinstants.com/media/sounds/pluh.mp3"
+    );
+
+    pluhText.addEventListener("click", () => {
+      pluhSound.currentTime = 0;
       pluhSound.play();
+
+      pluhText.classList.remove("bounce");
+      void pluhText.offsetWidth; // trigger reflow
+      pluhText.classList.add("bounce");
     });
   </script>
 </body>
